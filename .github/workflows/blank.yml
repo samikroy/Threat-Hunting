@@ -16,6 +16,6 @@ jobs:
       
     - name: Run native script
       run: |
-        echo nothing much
+        echo nothing much, just a second step
         ls -a
       
