@@ -14,6 +14,9 @@ jobs:
     - name: Run script file
       run: sh ./script.sh
       
+    - name: Run script file for MS Service Tags
+      run: sh ./msservicetags.sh
+            
     - name: Run native script
       run: |
         echo nothing much, just a second step
