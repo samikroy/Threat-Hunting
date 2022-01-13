@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Run script file
-      run: sh ./script.sh
+      run: sh ./sample.sh
       
     - name: Run script file for MS Service Tags
       run: sh ./msservicetags.sh
