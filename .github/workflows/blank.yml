@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v2
     
     - name: Run script file
-      run: sh ./sample.sh
+      run: sh ./script.sh
       
     - name: Run native script
       run: |
