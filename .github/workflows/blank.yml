@@ -4,11 +4,17 @@ on:
     branches:
       - main
   schedule:
-    - cron: '5 8 * * 6'
+    - cron: '0/5 * * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
     - name: Run script file
-      run: sh ./script.sh
+      run: sh ./sample.sh
+      
+    - name: Run native script
+      run: |
+        echo nothing much
+        ls -a
+      
