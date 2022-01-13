@@ -11,8 +11,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run script file
-      run: ./script.sh
-    
-    - name: comment-step
-    - run: | 
-        echo 'Completed !'
+      run: sh ./script.sh
