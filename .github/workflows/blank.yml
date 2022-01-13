@@ -1,8 +1,8 @@
-name: Master
+name: main
 on:
   push:
     branches:
-      - master
+      - main
   schedule:
     - cron: '*/5 * * * *'
 jobs:
