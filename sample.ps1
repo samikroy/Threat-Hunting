@@ -1,9 +1,4 @@
-$Response = Invoke-WebRequest -URI https://www.bing.com/search?q=how+many+feet+in+a+mile
-$Response.InputFields | Where-Object {
-    $_.name -like "* Value*"
-} | Select-Object Name, Value
-
-name       value
-----       -----
-From Value 1
-To Value   5280
+$Response = Invoke-WebRequest -URI https://www.microsoft.com/en-us/download/confirmation.aspx?id=56519
+$DownloadLink = $Response.Links |  where {$_.href.Contains("/ServiceTags_Public")} |select href
+$jsonFileData = Invoke-WebRequest $DownloadLink.href | ConvertFrom-Json
+$jsonFileData | ConvertTo-Json -depth 100 | Out-File ".\servicetags.json"
