@@ -9,8 +9,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
     
+    
+    - uses: actions/checkout@v2
+    - pwsh: ./sample.ps1
     - name: Run script file
       run: sh ./sample.sh
       
