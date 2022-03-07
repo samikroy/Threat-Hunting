@@ -7,20 +7,12 @@ on:
     - cron: '0 0 1 * *'
 jobs:
   build:
+
     runs-on: ubuntu-latest
     steps:
-    
-    
-    - uses: actions/checkout@v2
-    - pwsh: ./sample.ps1
-    - name: Run script file
-      run: sh ./sample.sh
-      
-    - name: Run script file for MS Service Tags
-      run: sh ./msservicetags.sh
-            
-    - name: Run native script
-      run: |
-        echo nothing much, just a second step
-        ls -a
+      - name: Check out repo        
+        uses: actions/checkout@v2
+      - run: |
+          ./sample.ps1
+        shell: pwsh  
       
