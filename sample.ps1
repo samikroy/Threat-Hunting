@@ -3,7 +3,7 @@ $Response = Invoke-WebRequest -URI $DownloadCenterURL
 $DownloadLink = $Response.Links |  where {$_.href.Contains("/ServiceTags_Public")} | select href
 $DownloadURL = [System.Uri]$DownloadLink[0].href
 $jsonFileData = Invoke-WebRequest -Method Get -URI $DownloadURL | ConvertFrom-Json
-$jsonContent = $jsonFileData | ConvertTo-Json -depth 100 |
+$jsonContent = $jsonFileData | ConvertTo-Json -depth 100
 $jsonFileData | ConvertTo-Json -depth 100 | Out-File ".\servicetags.json"
 
 #decleration
