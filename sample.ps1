@@ -3,13 +3,13 @@ $Response = Invoke-WebRequest -URI $DownloadCenterURL
 $DownloadLink = $Response.Links |  where {$_.href.Contains("/ServiceTags_Public")} | select href
 $DownloadURL = [System.Uri]$DownloadLink[0].href
 $jsonFileData = Invoke-WebRequest -Method Get -URI $DownloadURL | ConvertFrom-Json
+$jsonContent = $jsonFileData | ConvertTo-Json -depth 100 |
 $jsonFileData | ConvertTo-Json -depth 100 | Out-File ".\servicetags.json"
 
-(
-    $file = "servicetags.json",
-    $text = $jsonFileData, 
-    $wi = "#13 #14"
-)
+#decleration
+$file = ".\servicetags.json"
+$text = $jsonFileData 
+$wi = "#13 #14"
 
 "Set config"
 git config --global user.email "builduser@dummy.local" # any values will do, if missing commit will fail
@@ -25,7 +25,7 @@ git pull  2>&1 | write-host
 git status 2>&1 | write-host
 
 "Update the file $file"
-Add-Content -Path $file -Value "$text - $(Get-Date)"
+Add-Content -Path $file -Value $jsonContent
 
 "Status prior to stage"
 git status 2>&1 | write-host
