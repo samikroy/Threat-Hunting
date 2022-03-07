@@ -16,7 +16,7 @@ git config --global user.email "builduser@dummy.local" # any values will do, if 
 git config --global user.name "Build user"
 
 "Select a branch"
-git checkout master 2>&1 | write-host # need the stderr redirect as some git command line send none error output here
+git checkout main 2>&1 | write-host # need the stderr redirect as some git command line send none error output here
 
 "Update the local repo"
 git pull  2>&1 | write-host
