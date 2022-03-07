@@ -4,3 +4,43 @@ $DownloadLink = $Response.Links |  where {$_.href.Contains("/ServiceTags_Public"
 $DownloadURL = [System.Uri]$DownloadLink[0].href
 $jsonFileData = Invoke-WebRequest -Method Get -URI $DownloadURL | ConvertFrom-Json
 $jsonFileData | ConvertTo-Json -depth 100 | Out-File ".\servicetags.json"
+
+(
+    $file = "servicetags.json",
+    $text = $jsonFileData, 
+    $wi = "#13 #14"
+)
+
+"Set config"
+git config --global user.email "builduser@dummy.local" # any values will do, if missing commit will fail
+git config --global user.name "Build user"
+
+"Select a branch"
+git checkout master 2>&1 | write-host # need the stderr redirect as some git command line send none error output here
+
+"Update the local repo"
+git pull  2>&1 | write-host
+
+"Status at start"
+git status 2>&1 | write-host
+
+"Update the file $file"
+Add-Content -Path $file -Value "$text - $(Get-Date)"
+
+"Status prior to stage"
+git status 2>&1 | write-host
+
+"Stage the file"
+git add $file  2>&1 | write-host
+
+"Status prior to commit"
+git status 2>&1 | write-host
+
+"Commit the file"
+git commit -m "Automated Repo Update $wi"  2>&1 | write-host
+
+"Status prior to push"
+git status 2>&1 | write-host
+
+"Push the change"
+git push  2>&1 | write-host
